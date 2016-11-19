@@ -1,7 +1,7 @@
 processData <- function() 
 {
   #########################################################################
-  ## Plot 1 for the assignment at the end of week 1 of the EDA course.   ##
+  ## Plot 2 for the assignment at the end of week 1 of the EDA course.   ##
   ## Retrieves data from the  UC Irvine Machine Learning Repository.     ##
   #########################################################################
   
@@ -30,14 +30,10 @@ processData <- function()
   
   ## convert date and time column to a date/time for plotting:
   householdData <- mutate(householdData, newDatetime = as.POSIXct(strptime(paste(householdData$Date, householdData$Time), format = "%d/%m/%Y %H:%M:%S")))
-
-  png(filename="Plot1.png", width = 480, height = 480)
-
-  with(householdData, 
-       hist(Global_active_power, 
-            col="red", 
-            xlab="Global Active Power (Kilowatts)", 
-            main="Global Active Power"))
   
+  png(filename="Plot2.png", width = 480, height = 480)
+  
+  with(householdData, plot(Global_active_power ~ newDatetime, type="l", ylab = "Global Active Power (Kilowatts)", xlab=""))
+
   dev.off()
 }
