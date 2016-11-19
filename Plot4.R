@@ -1,7 +1,7 @@
-preparePlot3 <- function() 
+preparePlot4 <- function() 
 {
   #########################################################################
-  ## Plot 3 for the assignment at the end of week 1 of the EDA course.   ##
+  ## Plot 4 for the assignment at the end of week 1 of the EDA course.   ##
   ## Retrieves data from the  UC Irvine Machine Learning Repository.     ##
   #########################################################################
   
@@ -31,13 +31,43 @@ preparePlot3 <- function()
   ## convert date and time column to a date/time for plotting:
   householdData <- mutate(householdData, newDatetime = as.POSIXct(strptime(paste(householdData$Date, householdData$Time), format = "%d/%m/%Y %H:%M:%S")))
   
-  png(filename="Plot3.png", width = 480, height = 480)
+  png(filename="Plot4.png", width = 480, height = 480)
   
-  with(householdData, plot(Sub_metering_1 ~ newDatetime, type="l", ylab = "Energy Sub Metering", xlab=""))
+  ## Split graphing device into 4:
+  par(mfrow=c(2,2), mar=c(4,4,0,1), oma=c(0,1,0,0), cex=0.8, cex.axis=0.8)
+
+  
+  ## 1:
+  with(householdData, plot(Global_active_power ~ newDatetime, 
+                           type="l", 
+                           ylab = "Global Active Power", 
+                           xlab=""))
+  
+  ## 2:
+  with(householdData, plot(Voltage ~ newDatetime, 
+                           type="l", 
+                           ylab = "Voltage", 
+                           xlab="datetime"))
+
+  ## 3:
+  with(householdData, plot(Sub_metering_1 ~ newDatetime, 
+                           type="l", 
+                           ylab = "Energy Sub Metering", 
+                           xlab=""))
   with(householdData, lines(Sub_metering_2 ~ newDatetime, col="red"))
   with(householdData, lines(Sub_metering_3 ~ newDatetime, col="blue"))
   
-  legend("topright",col=c("black","red","blue"),legend=c("Sub_Metering_1","Sub_Metering_2","Sub_Metering_3"),lty=1)  
+  legend("topright",
+         col=c("black","red","blue"),
+         legend=c("Sub_Metering_1","Sub_Metering_2","Sub_Metering_3"),
+         lty=1,
+         bty="n",
+         cex=0.8)  
+  
+  ## 4:
+  with(householdData, plot(Global_reactive_power ~ newDatetime, 
+                           type="l", 
+                           xlab="datetime"))
   
   dev.off()
 }

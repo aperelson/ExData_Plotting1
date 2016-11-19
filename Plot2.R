@@ -1,4 +1,4 @@
-processData <- function() 
+preparePlot2 <- function() 
 {
   #########################################################################
   ## Plot 2 for the assignment at the end of week 1 of the EDA course.   ##
@@ -33,7 +33,10 @@ processData <- function()
   
   png(filename="Plot2.png", width = 480, height = 480)
   
-  with(householdData, plot(Global_active_power ~ newDatetime, type="l", ylab = "Global Active Power (Kilowatts)", xlab=""))
+  with(householdData, plot(Global_active_power ~ newDatetime, 
+                           type="l", 
+                           ylab = "Global Active Power (Kilowatts)", 
+                           xlab=""))
 
   dev.off()
 }

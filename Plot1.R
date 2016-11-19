@@ -1,4 +1,4 @@
-processData <- function() 
+preparePlot1 <- function() 
 {
   #########################################################################
   ## Plot 1 for the assignment at the end of week 1 of the EDA course.   ##
