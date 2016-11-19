@@ -34,7 +34,7 @@ preparePlot4 <- function()
   png(filename="Plot4.png", width = 480, height = 480)
   
   ## Split graphing device into 4:
-  par(mfrow=c(2,2), mar=c(4,4,0,1), oma=c(0,1,0,0), cex=0.8, cex.axis=0.8)
+  par(mfrow=c(2,2), cex=0.8, cex.axis=0.8)
 
   
   ## 1:
